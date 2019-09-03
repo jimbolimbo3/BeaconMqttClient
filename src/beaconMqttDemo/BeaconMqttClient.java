@@ -20,7 +20,7 @@ public class BeaconMqttClient
     
     private boolean IsConnected = false;
     private MqttConnNotify mQttNotify;
-    private BeaconMqttPushCallback mBeaconCallback;
+    public BeaconMqttPushCallback mBeaconCallback;
     
     public boolean isConnected()
     {

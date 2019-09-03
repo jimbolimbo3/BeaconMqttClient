@@ -39,7 +39,7 @@ public class BeaconPannel extends JPanel implements MqttConnNotify{
  
 	private JLabel labelMqttSrv, labelGwID, labelMqttUser, labelMqttPwd;            
 	
-	private JButton buttonConn, buttonOpenFile, buttonPushMsg;        
+	private JButton buttonConn, buttonClear, buttonOpenFile, buttonPushMsg;        
 	private JTextField textMqttSrv, textGwID, textMqttUser, textMqttPwd, textJsonFile;             
 	private JTextArea textLogInfo;
     private JPanel pannelMqttSrv, pannelGwID, pannelUser, pannelPwd, pannelLogin, pannelLogInfo, pannelDownload;
@@ -62,6 +62,7 @@ public class BeaconPannel extends JPanel implements MqttConnNotify{
     	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 
     	this.buttonConn = new JButton("Connected");
+    	this.buttonClear = new JButton("clear");
     	this.buttonPushMsg = new JButton("Download");
     	buttonPushMsg.setEnabled(false);
     	this.buttonOpenFile = new JButton("OpenFile");
@@ -93,6 +94,9 @@ public class BeaconPannel extends JPanel implements MqttConnNotify{
     	this.pannelPwd.setLayout(new FlowLayout(FlowLayout.LEFT));
     	
     	this.pannelLogin.add(this.buttonConn);
+    	this.pannelLogin.setLayout(new FlowLayout(FlowLayout.LEFT));
+    	
+    	this.pannelLogin.add(this.buttonClear);
     	this.pannelLogin.setLayout(new FlowLayout(FlowLayout.LEFT));
     	
     	this.pannelLogInfo.add(scroll);
@@ -147,6 +151,12 @@ public class BeaconPannel extends JPanel implements MqttConnNotify{
     			 }
              }
         });
+    	
+    	buttonClear.addActionListener(new ActionListener(){
+   		 public void actionPerformed(ActionEvent e) {
+   			mMqttClient.mBeaconCallback.clearAllDevice();
+            }
+       });
     	
     	
     	buttonOpenFile.addActionListener(new ActionListener(){
